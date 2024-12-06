@@ -12,7 +12,7 @@ const EditableTable: React.FC = () => {
       if (value.includes(".")) {
         const [integerPart, decimalPart] = value.split(".");
         if (decimalPart.length > 2) {
-          value = `${integerPart}.${decimalPart.slice(0, 2)}`;
+          value = `${ integerPart }.${ decimalPart.slice(0, 2) }`;
         }
       }
 

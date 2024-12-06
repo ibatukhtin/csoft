@@ -23,14 +23,14 @@ const tableSlice = createSlice({
   initialState,
   reducers: {
     addColumn: (state) => {
-      const newColumnId = `col${state.columns.length + 1}`;
-      state.columns.push({ id: newColumnId, name: `Column ${state.columns.length + 1}`, type: 'string' });
+      const newColumnId = `col${ state.columns.length + 1 }`;
+      state.columns.push({ id: newColumnId, name: `Column ${ state.columns.length + 1 }`, type: 'string' });
       Object.values(state.rows).forEach((row) => {
         row[newColumnId] = '';
       });
     },
     addRow: (state) => {
-      const newRowId = `row${Object.keys(state.rows).length + 1}`;
+      const newRowId = `row${ Object.keys(state.rows).length + 1 }`;
       state.rows[newRowId] = state.columns.reduce((acc, column) => {
         acc[column.id] = '';
         return acc;
