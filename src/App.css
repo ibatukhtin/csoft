@@ -1,38 +1,247 @@
-.App {
-  text-align: center;
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+
+  --app-bg: #f2f2f7;
+  --primary-color: rgb(138, 138, 163);
+  --secondary-color: rgb(159, 171, 185);
+  --hover-color: rgb(109, 109, 140);
+  --light-Grey: #E3E3E3;
+  --text-black: #000;
+  --text-white: #FFF;
+  --border-radius: 1rem;
+  --control-height: 2rem;
+  --control-border-radius: 0.5rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fonts/Roboto.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@font-face {
+  font-family: 'PT Root UI';
+  src: url('./assets/fonts/PT-Root-UI_Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  src: url('./assets/fonts/PT-Root-UI_Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  src: url('./assets/fonts/PT-Root-UI_Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  src: url('./assets/fonts/PT-Root-UI_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+html {
+  margin: 0 auto;
+  width: 100%;
+  color: var(--text-black);
+  background-color: var(--app-bg);
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.app {
+  padding: 3rem 4rem;
+  @media (max-width: 48rem) {
+    padding: 1rem;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  max-width: 70rem;
+  margin-left: auto;
+  margin-right: auto;
+  container-type: inline-size;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.page-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  @media (max-width: 30rem) {
+    flex-direction: column;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    order: 0;
+    @media (max-width: 30rem) {
+      order: 1;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 0.523rem + 4.3421vw, 3.5625rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.25px;
+      text-align: left;
+    }
+
+    .developer {
+      font-size: clamp(1.125rem, 0.8289rem + 1.3158vw, 1.75rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+  }
+
+  .logo {
+    width: 154px;
+    height: 100px;
+    order: 1;
+    @media (max-width: 50rem) {
+      width: 77px;
+      height: 50px;
+    }
+    @media (max-width: 30rem) {
+      order: 0;
+    }
+  }
 }
 
-.App-link {
-  color: #61dafb;
+.editable-table {
+  margin-top: 4rem;
+  font-family: 'PT Root UI', sans-serif;
+  font-weight: 500;
+  @media (max-width: 48rem) {
+    margin-top: 2rem;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-X: auto;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  width: 150px;
+  border-bottom: 1px solid rgba(0, 23, 41, 0.16);
+}
+
+.expand {
+  width: auto;
+}
+
+.input-wrapper {
+  position: relative;
+
+  input {
+    width: calc(100% - 2rem);
+    height: var(--control-height);
+    padding: 0 1rem;
+    border: 1px solid var(--light-Grey);
+    border-radius: var(--control-border-radius);
+    outline: none;
+    font-family: 'PT Root UI', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+
+    &:focus {
+      border-color: var(--hover-color);
+    }
+
+    &[type="number"]::-webkit-inner-spin-button,
+    &[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
   }
-  to {
-    transform: rotate(360deg);
+
+  .percent {
+    position: absolute;
+    top: 5px;
+    right: 10px;
   }
 }
+
+select {
+  width: 100%;
+  height: calc(var(--control-height) + 2px);
+  padding: 0 0.5rem;
+  border: 1px solid var(--light-Grey);
+  border-radius: var(--control-border-radius);
+  outline: none;
+  font-family: 'PT Root UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: var(--secondary-color);
+  color: var(--text-white);
+  cursor: pointer;
+}
+
+.btn {
+  height: var(--control-height);
+  padding: 0 1rem;
+  color: var(--text-white);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--control-border-radius);
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+  font-family: 'PT Root UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+
+  &.btn-primary {
+    background-color: var(--primary-color);
+  }
+
+  &:hover {
+    background-color: var(--hover-color);
+  }
+
+  outline: none;
+
+  &:focus {
+    border-color: var(--hover-color);
+  }
+}
+
